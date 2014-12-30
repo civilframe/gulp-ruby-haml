@@ -1,5 +1,5 @@
 {
-  "name": "gulp-ruby-haml",
+  "name": "gulp-ruby-haml-rkkn",
   "version": "0.0.3",
   "description": "Compile Haml to HTML with Ruby Haml",
   "license": "MIT",
@@ -12,6 +12,14 @@
     "email": "cheshire137@gmail.com",
     "url": "http://www.sarah-vessels.com"
   },
+  "contributors": [
+    {
+      "name": "Alex Solo",
+      "email": "alex@alexsolo.io",
+      "url": "https://github.com/civilframe",
+      "hireable": false
+    }
+  ],
   "engines": {
     "node": ">=0.10.0"
   },
@@ -31,10 +39,10 @@
     "ruby"
   ],
   "dependencies": {
+    "clone": "~0.1.11",
     "gulp-util": "~2.2.0",
-    "through2": "~0.4.0",
-    "win-spawn": "~2.0.0",
-    "clone": "~0.1.11"
+    "map-stream": "0.0.5",
+    "win-spawn": "~2.0.0"
   },
   "devDependencies": {
     "gulp": "~3.5.2",

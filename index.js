@@ -3,12 +3,12 @@ var gutil = require('gulp-util');
 var Buffer = require('buffer').Buffer;
 var PluginError = gutil.PluginError;
 var clone = require('clone');
-var through = require('through2');
+var map = require('map-stream');
 
-const PLUGIN_NAME = 'gulp-ruby-haml';
+const PLUGIN_NAME = 'gulp-rkkn-ruby-haml';
 
 module.exports = function (opt) {
-  function modifyFile(file, enc, callback) {
+  function modifyFile(file, callback) {
     if (file.isNull()) {
       return callback(null, file);
     }
@@ -23,11 +23,22 @@ module.exports = function (opt) {
     var options = {};
     options.outExtension = opt.outExtension || '.html';
     options.doubleQuote = opt.doubleQuote || false;
+    options.style = opt.style || null;
+    options.noEscapeAttr = opt.noEscapeAttr || false;
+    options.requireFile = opt.requireFile || null;
 
-    var str = file.contents.toString('utf8');
     var args = ['haml'];
     if (options.doubleQuote) {
       args.push('-q');
+    }
+    if (options.style !== null) {
+      args.push('--style', options.style);
+    }
+    if (options.noEscapeAttr === true) {
+      args.push('--no-escape-attrs');
+    }
+    if (options.requireFile !== null) {
+      args.push('--require', options.requireFile);
     }
     args.push(file.path);
     var cp = spawn(args.shift(), args);
@@ -64,5 +75,5 @@ module.exports = function (opt) {
     });
   }
 
-  return through.obj(modifyFile);
+  return map(modifyFile);
 };
