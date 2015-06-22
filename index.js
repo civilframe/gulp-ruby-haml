@@ -91,7 +91,7 @@ module.exports = function (opt) {
           });
 
           cp.on('close', function (code) {
-            if (errors) {
+            if (errors.length > 0) {
               reject(errorPrepend + errors);
               return;
             }
@@ -117,7 +117,7 @@ module.exports = function (opt) {
 
     q.all(promises)
       .fail(function(error) {
-        this.emit('error', new PluginError(PLUGIN_NAME,  error));
+        _this.emit('error', new PluginError(PLUGIN_NAME,  error));
       })
       .finally(function() {
         callback();

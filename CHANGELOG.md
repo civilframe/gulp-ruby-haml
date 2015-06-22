@@ -1,3 +1,7 @@
+## 0.0.6
+
+- Fixed HAML compile error handling.
+
 ## 0.0.3
 
 - Don't pass invalid Haml file through, so it doesn't end up in your `gulp.dest`.
